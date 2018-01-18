@@ -26,21 +26,23 @@ class App extends Component {
   }
 
   render() {
-    
+    var output = null;
+
+    if (this.state.showOutput) {
+      output = (
+        <UserOutput name={this.state.name}/>
+      );
+    }
+
     return (
       <div className="App">
         <img src={logo} width="400px" alt=""/>
         <UserInput inputChanged={this.inputChangedHandler} name={this.state.name}/>
 
-        {
-          this.state.showOutput ?
-          <div>
-            <UserOutput name={this.state.name}/>
-          </div> : null
-        }
-
         <MyButton click={this.resetNameHandler} label="Reset Name"/>
         <MyButton click={this.toggleHandler} label="Toggle OutputDiv"/>
+
+        {output}
       </div>
     );
   }
