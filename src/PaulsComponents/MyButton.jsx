@@ -11,7 +11,7 @@ const my_button = (props) => {
 
     return (
         <div>
-            <button style={local_style} onClick={props.click}>Reset Name</button>
+            <button style={local_style} onClick={props.click}>{props.label}</button>
         </div>
     );
 };

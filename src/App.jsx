@@ -8,7 +8,8 @@ import MyButton from './PaulsComponents/MyButton'
 
 class App extends Component {
   state = {
-    name: "Paul Michael"
+    name: "Paul Michael",
+    showOutput: true
   };
 
   inputChangedHandler = (event) => {
@@ -19,14 +20,27 @@ class App extends Component {
     this.setState({name: "Paul Michael"})
   }
 
+  toggleHandler = () => {
+    const currState = this.state.showOutput;
+    this.setState({showOutput: !currState});
+  }
+
   render() {
     
     return (
       <div className="App">
         <img src={logo} width="400px" alt=""/>
         <UserInput inputChanged={this.inputChangedHandler} name={this.state.name}/>
-        <UserOutput name={this.state.name}/>
-        <MyButton click={this.resetNameHandler}/>
+
+        {
+          this.state.showOutput ?
+          <div>
+            <UserOutput name={this.state.name}/>
+          </div> : null
+        }
+
+        <MyButton click={this.resetNameHandler} label="Reset Name"/>
+        <MyButton click={this.toggleHandler} label="Toggle OutputDiv"/>
       </div>
     );
   }
